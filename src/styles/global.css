@@ -1,0 +1,65 @@
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/600.css";
+@import "@fontsource/dm-sans/700.css";
+@import "@fontsource/dm-serif-display/400.css";
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "DM Serif Display", Georgia, serif;
+  --color-emerald-50: #f0f4ee;
+  --color-emerald-100: #e5ebdf;
+  --color-emerald-200: #ccd8c5;
+  --color-emerald-700: #44654e;
+  --color-emerald-800: #35543f;
+  --color-emerald-900: #294b3b;
+  --color-emerald-950: #20382d;
+}
+
+:root {
+  font-family: var(--font-sans);
+  color: #20382d;
+  background: #f8f7f3;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body { margin: 0; min-width: 0; }
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+button, a { touch-action: manipulation; }
+button:disabled { cursor: not-allowed; }
+img { max-width: 100%; }
+h1, h2, h3 { text-wrap: balance; }
+p { text-wrap: pretty; }
+::selection { background: #dce5d2; color: #20382d; }
+:focus-visible { outline: 2px solid #44654e; outline-offset: 4px; }
+.display-heading { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.035em; line-height: 1.08; }
+@layer components {
+.field { width: 100%; min-height: 48px; border: 1px solid #d8ddd3; border-radius: 10px; background: #fff; padding: 12px 14px; color: #20382d; font-size: 1rem; outline: none; transition: border-color 180ms, box-shadow 180ms; }
+.field::placeholder { color: #7b8378; }
+.field:focus { border-color: #44654e; box-shadow: 0 0 0 3px #44654e18; }
+.field[aria-invalid="true"] { border-color: #b34040; }
+.field:disabled { background: #eeeee8; cursor: not-allowed; }
+}
+.skip-link { position: fixed; top: 12px; left: 12px; z-index: 60; transform: translateY(-180%); background: #fff; border-radius: 8px; padding: 12px 18px; }
+.skip-link:focus { transform: translateY(0); }
+.page-enter { animation: page-enter 400ms ease-out both; }
+.recipe-photo { transition: transform 450ms ease; }
+.recipe-link:hover .recipe-photo { transform: scale(1.035); }
+.skeleton { background: #e9ece3; animation: pulse 1.6s ease-in-out infinite; }
+.recipe-dialog { position: fixed; inset: 0; margin: auto; max-height: 90dvh; width: min(44rem, calc(100% - 2rem)); max-width: none; border: 0; border-radius: 20px; padding: 0; color: #20382d; background: #fafaf6; box-shadow: 0 24px 90px #20382d33; }
+.recipe-dialog::backdrop { background: #172c24a6; backdrop-filter: blur(4px); }
+.recipe-dialog[open] { display: flex; flex-direction: column; animation: page-enter 180ms ease-out both; }
+.auth-photo { background: #d7dfcd; }
+.auth-photo img { filter: brightness(.45); }
+.recipe-check { accent-color: #294b3b; }
+@keyframes page-enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 50% { opacity: .5; } }
+@media (max-width: 639px) {
+  .recipe-dialog { width: 100%; max-height: 94dvh; margin: auto 0 0; border-radius: 20px 20px 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
